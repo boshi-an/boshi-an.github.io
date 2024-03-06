@@ -1,1 +1,1 @@
-I am a three-year undergraduate student in Turing class at the School of Computer Science, Peking University and a research intern at Beijing Institute for General Artificial Intelligence (BIGAI), working with Prof. Hao Dong and Prof. Yaodong Yang. I also had the privilege of working closely with Prof. He Wang. 
+I am boshi-an, currently a senior student at Peking University, Turing Class. I've worked with professor Hao Dong and Yaodong Yang closely on robotic manipulation. I've joined professor Alexander Mathis at EPFL for summer research in 2023.
