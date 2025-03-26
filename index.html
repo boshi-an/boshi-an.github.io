@@ -47,9 +47,11 @@
                 <a href="images/WeChat.jpg">WeChat</a>
               </p>
               <heading>Introduction</heading>
-              <!-- <tr style="padding:0px"> -->
               <td style="padding:2.5%;width:68%;vertical-align:top">
                 <p>
+                  Currently, I am a master's student at <a href="https://www.epfl.ch/en/" target="_blank">EPFL</a> and
+                  joining the <a href="https://srl.ethz.ch" target="_blank">Soft Robotics Lab</a> at <a href="https://ethz.ch/en.html" target="_blank">ETH</a>
+                  as a research intern.
                   I received honours degree (summa cum laude) from <a
                     href="https://cfcs.pku.edu.cn/research/turing_program/introduction1/index.htm" target="_blank">Turing class</a>
                   at the <a href="https://eecs.pku.edu.cn/" target="_blank">School of Computer Science</a>,
@@ -64,14 +66,12 @@
                 <a href="images/photo2.png"><img style="width:85%;max-width:85%" alt="profile photo" src="images/photo2.png"
                     class="hoverZoomLink">
                 </a>
-                <!-- <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgengyiran.github.io&count_bg=%2379C83D&title_bg=%23484848&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a> -->
                 <a href="https://hits.seeyoufarm.com"><img
                     src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fboshi-an%2Fboshi-an.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" />
                 </a>
 
               </td>
 
-              <!-- </tr> -->
             </tbody>
           </table>
 
@@ -82,53 +82,153 @@
               <p>
                 I'm interested in reinforcement learning, robotics and computational neurology.
               </p>
-              <tr onmouseout="malle_stop1()" onmouseover="malle_start1()">
-                <td style="padding:20px;width:25%;vertical-align:middle">
+             
+              <tr onmouseout="malle_stop4()" onmouseover="malle_start4()">
+                <td style="padding:20px;width:30%;vertical-align:middle">
                   <div class="one">
-                    <div class="two" id='malle_image1'>
+                    <div class="two" id='malle_image4'>
                       <br>
-                      <br>
-                      <img src='images/myo.png' width="180">
+                      <img src='images/RGBManip.jpg' width="190">
                     </div>
                     <br>
-                    <br>
-                    <img src='images/myo2.png' width="180">
+                    <img src='images/RGBManip2.jpg' width="190">
                   </div>
                   <script type="text/javascript">
-                    function malle_start1() {
-                      document.getElementById('malle_image1').style.opacity = "1";
+                    function malle_start4() {
+                      document.getElementById('malle_image4').style.opacity = "1";
                     }
-                    function malle_stop1() {
-                      document.getElementById('malle_image1').style.opacity = "0";
+
+                    function malle_stop4() {
+                      document.getElementById('malle_image4').style.opacity = "0";
                     }
                     malle_stop()
                   </script>
                 </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://sites.google.com/view/myochallenge">
-                    <papertitle>MyoChallenge: Die reorientation</papertitle>
+                <td style="padding:20px;width:70%;vertical-align:middle">
+                  <a href="https://rgbmanip.github.io">
+                    <papertitle><br>RGBManip:
+                      Monocular Image-based Robotic Manipulation through Active Object Pose Estimation</papertitle>
                   </a>
                   <br>
-                  <a:focus><u>Boshi An</u></a:focus>,
-                  <a:focus href="https://gengyiran.github.io">Yiran Geng</a:focus>,
-                  <a:focus href="https://github.com/Ivan-Zhong">Yifan Zhong</a:focus>,
-                  <a:focus href="https://jijiaming.com">Jiaming Ji</a:focus>,
-                  <a:focus href="https://cypypccpy.github.io/">Yuanpei Chen</a:focus>
-                  <br>
-                  <a href="https://sites.google.com/view/myochallenge">Challenge Page</a>
-                  /
-                  <a href="https://github.com/PKU-MARL/MyoChallenge">Code</a>
-                  /
-                  <a href="pdf/DieRotation_NIPS22.pdf">Slides</a></li>
-                  /
-                  <a href="https://sites.google.com/view/myochallenge#h.t3275626vjox">Talk</a></li>
-                  <br>
-                  <b>First Place in NeurIPS 2022 Challenge Track (1st in 340 submissions from 40 teams)</b>
-                  <p></p>
 
-                  <p>Reconfiguring a die to match desired goal orientations. This task require delicate coordination of
-                    various
-                    muscles to manipulate the die without dropping it. </p>
+                  <a:focus><u>Boshi An*</u></a:focus>,
+                  <a:focus href="https://gengyiran.github.io">Yiran Geng*</a:focus>,
+                  <a:focus href="https://ck-kai.github.io">Kai Chen*</a:focus>,
+                  <a:focus href="https://clorislili.github.io/clorisLi/">Xiaoqi Li</a:focus>,
+                  <a:focus href="https://www.cse.cuhk.edu.hk/~qdou/">Qi Dou</a:focus>,
+                  <a:focus href="https://zsdonghao.github.io">Hao Dong</a:focus>
+
+                  <br>
+                  <a href="https://arxiv.org/abs/2310.03478">ArXiv</a>
+                  /
+                  <a href="https://rgbmanip.github.io">Project Page</a>
+                  /
+                  <a href="https://github.com/hyperplane-lab/RGBManip">Code</a>
+                  <br>
+                  <em>ICRA 2024</em>
+
+                  <p></p>
+                  <p>
+                    We achieved state-of-the-art manipulation performance by combining reinforcement learning and
+                    multi-view pose estimation.
+                  </p>
+                </td>
+              </tr>
+
+              <tr onmouseout="malle_stop3()" onmouseover="malle_start3()">
+                <td style="padding:20px;width:30%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='malle_image3'>
+                      <br>
+                      <img src='images/Emergence.jpeg' width="190">
+                    </div>
+                    <br>
+                    <img src='images/Emergence2.jpeg' width="190">
+                  </div>
+                  <script type="text/javascript">
+                    function malle_start3() {
+                      document.getElementById('malle_image3').style.opacity = "1";
+                    }
+
+                    function malle_stop3() {
+                      document.getElementById('malle_image3').style.opacity = "0";
+                    }
+                    malle_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:70%;vertical-align:middle">
+                  <a href="">
+                    <papertitle><br>Learning Multi-object Positional Relations via Emergent Communication</papertitle>
+                  </a>
+                  <br>
+
+                  <a:focus href="https://takenpeanut.github.io">Yicheng Feng*</a:focus>,
+                  <a:focus><u>Boshi An*</u></a:focus>,
+                  <a:focus href="https://z0ngqing.github.io">Zongqing Lu</a:focus>
+
+                  <br>
+                  <a href="https://arxiv.org/abs/2302.08084">ArXiv</a>
+                  /
+                  <a href="">Project Page (Coming Soon)</a>
+                  /
+                  <a>Code (Coming Soon)</a>
+                  <br>
+                  <em>AAAI 2024</em> <b>Oral</b>
+
+                  <p></p>
+                  <p>
+                    We investigated whether a compositional language for describing 2-D positional relation can
+                    emerge from communication under environmental pressure.
+                  </p>
+                </td>
+              </tr>
+
+              <tr onmouseout="malle_stop6()" onmouseover="malle_start6()">
+                <td style="padding:20px;width:30%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='malle_image6'>
+                      <br>
+                      <img src='images/BPNet.png' width="190">
+                    </div>
+                    <br>
+                    <img src='images/BPNet3.jpeg' width="190">
+                  </div>
+                  <script type="text/javascript">
+                      function malle_start6() {
+                        document.getElementById('malle_image6').style.opacity = "1";
+                    }
+
+                      function malle_stop6() {
+                        document.getElementById('malle_image6').style.opacity = "0";
+                    }
+                    malle_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:70%;vertical-align:middle">
+                  <a href="">
+                    <papertitle><br>Bilateral Propagation Network for Depth Completion</papertitle>
+                  </a>
+                  <br>
+                  <a:focus>Jie Tang</a:focus>,
+                  <a:focus>Fei-Peng Tian</a:focus>,
+                  <a:focus><u>Boshi An</u></a:focus>,
+                  <a:focus>Jian Li</a:focus>,
+                  <a:focus>Ping Tan</a:focus>
+
+                  <br>
+                  <a href="https://arxiv.org/pdf/2403.11270.pdf">ArXiv</a>
+                  /
+                  <a href="https://colab.research.google.com/drive/1i8mHgtCGrphOn84q_eEBR-srUwye5971?usp=drive_link">Project Demo</a>
+                  /
+                  <a href="https://github.com/kakaxi314/BP-Net">Code</a>
+                  <br>
+                  <em>CVPR 2024</em>
+
+                  <p></p>
+                  <p>
+                    We proposed an image-guided depth completion model which is SOTA on NYUv2 dataset and won
+                    the first place on KITTY benchmark at the time of submission.
+                  </p>
                 </td>
               </tr>
 
@@ -183,152 +283,53 @@
                 </td>
               </tr>
 
-              <tr onmouseout="malle_stop3()" onmouseover="malle_start3()">
-                <td style="padding:20px;width:30%;vertical-align:middle">
+               <tr onmouseout="malle_stop1()" onmouseover="malle_start1()">
+                <td style="padding:20px;width:25%;vertical-align:middle">
                   <div class="one">
-                    <div class="two" id='malle_image3'>
+                    <div class="two" id='malle_image1'>
                       <br>
-                      <img src='images/Emergence.jpeg' width="190">
+                      <br>
+                      <img src='images/myo.png' width="180">
                     </div>
                     <br>
-                    <img src='images/Emergence2.jpeg' width="190">
+                    <br>
+                    <img src='images/myo2.png' width="180">
                   </div>
                   <script type="text/javascript">
-                    function malle_start3() {
-                      document.getElementById('malle_image3').style.opacity = "1";
+                    function malle_start1() {
+                      document.getElementById('malle_image1').style.opacity = "1";
                     }
-
-                    function malle_stop3() {
-                      document.getElementById('malle_image3').style.opacity = "0";
+                    function malle_stop1() {
+                      document.getElementById('malle_image1').style.opacity = "0";
                     }
                     malle_stop()
                   </script>
                 </td>
-                <td style="padding:20px;width:70%;vertical-align:middle">
-                  <a href="">
-                    <papertitle><br>Learning Multi-object Positional Relations via Emergent Communication</papertitle>
+                <td style="padding:20px;width:75%;vertical-align:middle">
+                  <a href="https://sites.google.com/view/myochallenge">
+                    <papertitle>MyoChallenge: Die reorientation</papertitle>
                   </a>
                   <br>
-
-                  <a:focus href="https://takenpeanut.github.io">Yicheng Feng*</a:focus>,
-                  <a:focus><u>Boshi An*</u></a:focus>,
-                  <a:focus href="https://z0ngqing.github.io">Zongqing Lu</a:focus>
-
-                  <br>
-                  <a href="https://arxiv.org/abs/2302.08084">ArXiv</a>
-                  /
-                  <a href="">Project Page (Coming Soon)</a>
-                  /
-                  <a>Code (Coming Soon)</a>
-                  <br>
-                  <em>AAAI 2024</em> <b>Oral</b>
-
-                  <p></p>
-                  <p>
-                    We investigated whether a compositional language for describing 2-D positional relation can
-                    emerge from communication under environmental pressure.
-                  </p>
-                </td>
-              </tr>
-
-              <tr onmouseout="malle_stop4()" onmouseover="malle_start4()">
-                <td style="padding:20px;width:30%;vertical-align:middle">
-                  <div class="one">
-                    <div class="two" id='malle_image4'>
-                      <br>
-                      <img src='images/RGBManip.jpg' width="190">
-                    </div>
-                    <br>
-                    <img src='images/RGBManip2.jpg' width="190">
-                  </div>
-                  <script type="text/javascript">
-                    function malle_start4() {
-                      document.getElementById('malle_image4').style.opacity = "1";
-                    }
-
-                    function malle_stop4() {
-                      document.getElementById('malle_image4').style.opacity = "0";
-                    }
-                    malle_stop()
-                  </script>
-                </td>
-                <td style="padding:20px;width:70%;vertical-align:middle">
-                  <a href="https://rgbmanip.github.io">
-                    <papertitle><br>RGBManip:
-                      Monocular Image-based Robotic Manipulation through Active Object Pose Estimation</papertitle>
-                  </a>
-                  <br>
-
-                  <a:focus><u>Boshi An*</u></a:focus>,
-                  <a:focus href="https://gengyiran.github.io">Yiran Geng*</a:focus>,
-                  <a:focus href="https://ck-kai.github.io">Kai Chen*</a:focus>,
-                  <a:focus href="https://clorislili.github.io/clorisLi/">Xiaoqi Li</a:focus>,
-                  <a:focus href="https://www.cse.cuhk.edu.hk/~qdou/">Qi Dou</a:focus>,
-                  <a:focus href="https://zsdonghao.github.io">Hao Dong</a:focus>
-
-                  <br>
-                  <a href="https://arxiv.org/abs/2310.03478">ArXiv</a>
-                  /
-                  <a href="https://rgbmanip.github.io">Project Page</a>
-                  /
-                  <a href="https://github.com/hyperplane-lab/RGBManip">Code</a>
-                  <br>
-                  <em>ICRA 2024</em>
-
-                  <p></p>
-                  <p>
-                    We achieved state-of-the-art manipulation performance by combining reinforcement learning and
-                    multi-view pose estimation.
-                  </p>
-                </td>
-              </tr>
-
-              <tr onmouseout="malle_stop6()" onmouseover="malle_start6()">
-                <td style="padding:20px;width:30%;vertical-align:middle">
-                  <div class="one">
-                    <div class="two" id='malle_image6'>
-                      <br>
-                      <img src='images/BPNet.png' width="190">
-                    </div>
-                    <br>
-                    <img src='images/BPNet3.jpeg' width="190">
-                  </div>
-                  <script type="text/javascript">
-                      function malle_start6() {
-                        document.getElementById('malle_image6').style.opacity = "1";
-                    }
-
-                      function malle_stop6() {
-                        document.getElementById('malle_image6').style.opacity = "0";
-                    }
-                    malle_stop()
-                  </script>
-                </td>
-                <td style="padding:20px;width:70%;vertical-align:middle">
-                  <a href="">
-                    <papertitle><br>Bilateral Propagation Network for Depth Completion</papertitle>
-                  </a>
-                  <br>
-                  <a:focus>Jie Tang</a:focus>,
-                  <a:focus>Fei-Peng Tian</a:focus>,
                   <a:focus><u>Boshi An</u></a:focus>,
-                  <a:focus>Jian Li</a:focus>,
-                  <a:focus>Ping Tan</a:focus>
-
+                  <a:focus href="https://gengyiran.github.io">Yiran Geng</a:focus>,
+                  <a:focus href="https://github.com/Ivan-Zhong">Yifan Zhong</a:focus>,
+                  <a:focus href="https://jijiaming.com">Jiaming Ji</a:focus>,
+                  <a:focus href="https://cypypccpy.github.io/">Yuanpei Chen</a:focus>
                   <br>
-                  <a href="https://arxiv.org/pdf/2403.11270.pdf">ArXiv</a>
+                  <a href="https://sites.google.com/view/myochallenge">Challenge Page</a>
                   /
-                  <a href="https://colab.research.google.com/drive/1i8mHgtCGrphOn84q_eEBR-srUwye5971?usp=drive_link">Project Demo</a>
+                  <a href="https://github.com/PKU-MARL/MyoChallenge">Code</a>
                   /
-                  <a href="https://github.com/kakaxi314/BP-Net">Code</a>
+                  <a href="pdf/DieRotation_NIPS22.pdf">Slides</a></li>
+                  /
+                  <a href="https://sites.google.com/view/myochallenge#h.t3275626vjox">Talk</a></li>
                   <br>
-                  <em>CVPR 2024</em>
-
+                  <b>First Place in NeurIPS 2022 Challenge Track (1st in 340 submissions from 40 teams)</b>
                   <p></p>
-                  <p>
-                    We proposed an image-guided depth completion model which is SOTA on NYUv2 dataset and won
-                    the first place on KITTY benchmark at the time of submission.
-                  </p>
+
+                  <p>Reconfiguring a die to match desired goal orientations. This task require delicate coordination of
+                    various
+                    muscles to manipulate the die without dropping it. </p>
                 </td>
               </tr>
 
