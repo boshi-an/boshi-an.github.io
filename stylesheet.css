@@ -107,7 +107,8 @@ heading {
   font-size: 24px;
   font-weight: 600;
   line-height: 1.2;
-  margin-bottom: 12px;
+  margin-top: 16px;
+  margin-bottom: 8px;
   display: block;
 }
 
@@ -160,7 +161,8 @@ span.highlight {
 
 /* Additional typography improvements */
 p {
-  margin-bottom: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 li {
@@ -181,7 +183,7 @@ a:hover {
 
 /* Better spacing for publication entries */
 tr {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* Improve readability for long text blocks */
