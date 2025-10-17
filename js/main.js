@@ -154,8 +154,52 @@ async function handleResize() {
   }, 250); // Wait 250ms after resize stops
 }
 
+// Theme management
+function initTheme() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // Always use system preference on page load
+  const initialTheme = prefersDark ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', initialTheme);
+  updateThemeButton(initialTheme);
+
+  // Listen to system changes
+  if (window.matchMedia) {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    media.addEventListener('change', (e) => {
+      const newTheme = e.matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      updateThemeButton(newTheme);
+    });
+  }
+
+  // Add click handler
+  themeToggle.addEventListener('click', toggleTheme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  updateThemeButton(newTheme);
+}
+
+function updateThemeButton(theme) {
+  const themeToggle = document.getElementById('theme-toggle');
+  if (theme === 'dark') {
+    themeToggle.textContent = '☀️ Light';
+  } else {
+    themeToggle.textContent = '🌙 Dark';
+  }
+}
+
 // Start the application when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', function() {
+  initTheme();
+  init();
+});
 
 // Handle window resize
 window.addEventListener('resize', handleResize);

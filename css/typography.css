@@ -1,13 +1,13 @@
 /* Typography styles */
 a {
-  color: #e79717e9;
+  color: var(--accent-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:focus,
 a:hover {
-  color: #d17a1a;
+  color: var(--accent-hover);
   text-decoration: none;
 }
 
@@ -36,7 +36,7 @@ heading {
   margin-top: 32px;
   margin-bottom: 8px;
   display: block;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 papertitle {
@@ -44,7 +44,7 @@ papertitle {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.3;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 abs {
@@ -68,11 +68,11 @@ li {
 /* Author focus styling */
 .author-focus {
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .author-focus:hover {
-  color: #f09228;
+  color: var(--accent-color);
 }
 
 /* Improve readability for long text blocks */

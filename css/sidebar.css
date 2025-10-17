@@ -40,7 +40,7 @@
   font-weight: 600;
   line-height: 1.4;
   margin-bottom: 12px;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .sidebar-link {
@@ -51,7 +51,7 @@
   margin: 2px 2px;
   padding: 4px 8px;
   cursor: pointer;
-  color: #1a1a1a;
+  color: var(--text-primary);
   text-decoration: none;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
@@ -60,13 +60,14 @@
 }
 
 .sidebar-link:hover {
-  background: rgba(0,0,0,0.05);
+  background: var(--bg-secondary);
   text-decoration: none;
 }
 
 .sidebar-link.active {
-  background: rgba(255, 233, 204, 0.3);
-  color: #b85c00;
+  background: rgba(231, 151, 23, 0.2);
+  color: var(--accent-color);
+  border-radius: 8px;
 }
 
 /* Responsive adjustments */
