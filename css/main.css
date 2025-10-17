@@ -41,7 +41,7 @@ body {
   min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
-  margin-left: 15%; /* Account for fixed sidebar */
+  margin-left: 190px; /* Account for fixed sidebar width */
 }
 
 /* Main content container */

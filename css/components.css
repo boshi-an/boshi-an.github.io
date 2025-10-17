@@ -75,8 +75,9 @@ tr {
   width: 100% !important;
   max-width: 250px !important;
   height: auto !important;
-  padding: 20px !important;
+  padding: 10px !important;
   box-sizing: border-box;
+  border-radius: 12px !important; /* Approximately 5% of 250px max-width */
 }
 
 /* Introduction section flexbox layout */
@@ -164,5 +165,92 @@ tr {
   }
   #section-experience .experience-col table {
     width: 100% !important;
+  }
+}
+
+/* Music section: larger image on left, text on right */
+.music-container {
+  /* display: flex; */
+  display: block;
+  /* align-items: flex-start; */
+  gap: 40px;
+  margin-top: 20px;
+}
+
+/* Clearfix so the container encloses the float */
+.music-container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* .music-image {
+  flex: 0 0 50%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+} */
+
+.music-image {
+  float: left;
+  width: 50%;
+  margin: 0 24px 16px 0;
+  /* space to the right/bottom for text */
+  box-sizing: border-box;
+}
+
+/* .music-image .profile-image {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+} */
+
+.music-image .profile-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100% !important;
+  border-radius: 12px;
+  padding: 0;
+  /* no inner padding so 50% stays clean */
+}
+
+/* .music-text {
+  flex: 1;
+  min-width: 0;
+  margin-top: 0;
+} */
+.music-text {
+  /* no special layout needed; paragraphs will flow around the float */
+  min-width: 0;
+}
+
+/* Responsive behavior for music section */
+/* @media (max-width: 768px) {
+  .music-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .music-image {
+    align-self: center;
+    flex: 0 0 auto;
+  }
+  
+  .music-image .profile-image {
+    max-width: 250px !important;
+  }
+} */
+
+/* Responsive: stack on narrow screens */
+@media (max-width: 768px) {
+  .music-image {
+    float: none;
+    width: 100%;
+    margin: 0 0 16px 0;
+    /* image on top, text below */
   }
 }

@@ -1,6 +1,7 @@
 // Section data
 const sections = [
   { id: 'section-introduction', file: 'sections/introduction.html' },
+  { id: 'section-music', file: 'sections/music.html' },
   { id: 'section-publications', file: 'sections/publications.html' },
   { id: 'section-experience', file: 'sections/experience.html' },
   { id: 'section-misc', file: 'sections/misc.html' }
@@ -54,6 +55,9 @@ async function loadSection(sectionId) {
 
 // Section navigation
 function selectSection(id) {
+  // Update global tracking
+  currentSectionId = id;
+  
   // Update active states
   document.querySelectorAll('.section').forEach(function(el){ 
     el.classList.remove('active'); 
@@ -99,6 +103,7 @@ async function init() {
   } else {
     // Desktop: Load only the initial section
     const hash = (location.hash || '#section-introduction').replace('#','');
+    currentSectionId = hash; // Set global tracking
     await loadSection(hash);
     selectSection(hash);
     
@@ -115,6 +120,8 @@ async function init() {
 
 // Debounce resize handler
 let resizeTimeout;
+let currentSectionId = 'section-introduction'; // Track current section globally
+
 async function handleResize() {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(async function() {
@@ -126,17 +133,36 @@ async function handleResize() {
       });
     } else {
       // Desktop: Load only the current section and hide others
-      const currentSection = document.querySelector('.section.active');
-      if (!currentSection) {
-        await loadSection('section-introduction');
-        selectSection('section-introduction');
-      } else {
-        // Hide all sections except the current one
-        document.querySelectorAll('.section').forEach(function(el) {
-          el.classList.remove('active');
-        });
+      // First, try to find the current section from URL hash
+      const hash = location.hash.replace('#', '');
+      if (hash && sections.find(s => s.id === hash)) {
+        currentSectionId = hash;
+      }
+      
+      // Load the current section if it's not already loaded
+      const existingSection = document.getElementById(currentSectionId);
+      if (!existingSection) {
+        await loadSection(currentSectionId);
+      }
+      
+      // Hide all sections except the current one
+      document.querySelectorAll('.section').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      
+      // Show the current section
+      const currentSection = document.getElementById(currentSectionId);
+      if (currentSection) {
         currentSection.classList.add('active');
       }
+      
+      // Update sidebar active state
+      document.querySelectorAll('#sidebar .sidebar-link').forEach(function(el) {
+        el.classList.remove('active');
+        if (el.getAttribute('data-target') === currentSectionId) {
+          el.classList.add('active');
+        }
+      });
       
       // Re-setup sidebar click handlers for desktop
       document.querySelectorAll('#sidebar .sidebar-link').forEach(function(el){
@@ -145,6 +171,7 @@ async function handleResize() {
         // Add new listener
         el._clickHandler = async function(){
           const targetId = el.getAttribute('data-target');
+          currentSectionId = targetId; // Update global tracking
           await loadSection(targetId);
           selectSection(targetId);
         };
