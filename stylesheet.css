@@ -195,3 +195,133 @@ td p {
 .author-focus:hover {
   color: #f09228;
 }
+
+/* Sidebar navigation */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200px;
+  background: #fafafa;
+  border-right: 1px solid #eee;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.sidebar-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 8px 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #1a1a1a;
+}
+
+.sidebar-link:hover {
+  background: #f1f1f1;
+}
+
+.sidebar-link.active {
+  background: #ffe9cc;
+  color: #b85c00;
+}
+
+/* Content sections */
+.section { 
+  display: none; 
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.section.active { display: block; }
+
+/* Add left padding to main content to avoid being hidden by sidebar */
+body { padding-left: 220px; }
+
+/* Blocked style version - consistent with sidebar */
+.blocked-style .section {
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.blocked-style .section heading {
+  background: #fff;
+  padding: 12px 16px;
+  margin: -24px -24px 16px -24px;
+  border-bottom: 1px solid #eee;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Borderless style version - clean and minimal */
+.borderless-style .section {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+.borderless-style .section heading {
+  background: transparent;
+  padding: 0;
+  margin: 16px 0 8px 0;
+  border: none;
+  border-radius: 0;
+}
+
+/* Borderless sidebar */
+.borderless-style #sidebar {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.borderless-style .sidebar-link {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 2px 0;
+  padding: 8px 0;
+}
+
+.borderless-style .sidebar-link:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.borderless-style .sidebar-link.active {
+  background: rgba(255, 233, 204, 0.3);
+  color: #b85c00;
+}
+
+/* Style toggle buttons */
+.style-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.style-toggle:hover {
+  background: #f5f5f5;
+}

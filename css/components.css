@@ -1,0 +1,168 @@
+/* Component styles */
+.one {
+  width: 160px;
+  height: 160px;
+  position: relative;
+}
+
+.two {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+.fade {
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+span.highlight {
+  background-color: #ffffd0;
+}
+
+/* Better spacing for publication entries */
+tr {
+  margin-bottom: 16px;
+}
+
+/* Table styles */
+.content-table {
+  width: 100%;
+  border: 0px;
+  border-spacing: 0px;
+  border-collapse: separate;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Remove padding from content table cells to align with headings */
+.content-table td {
+  padding: 0 !important;
+  vertical-align: middle !important;
+}
+
+/* Specific override for inline styles in content tables */
+.content-table td[style*="padding"] {
+  padding: 0 !important;
+  vertical-align: middle !important;
+}
+
+.experience-table {
+  width: 100%;
+  align: center;
+  border: 0;
+  cellpadding: 10;
+}
+
+.experience-table td {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 20%;
+  vertical-align: middle;
+}
+
+.experience-table td:last-child {
+  width: 90%;
+  valign: center;
+}
+
+/* Image styles */
+.profile-image {
+  width: 100% !important;
+  max-width: 250px !important;
+  height: auto !important;
+  padding: 20px !important;
+  box-sizing: border-box;
+}
+
+/* Introduction section flexbox layout */
+.introduction-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  /* margin-top: 20px; */
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.introduction-image {
+  flex: 0 0 250px; /* Fixed width to prevent wrapping */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Shared text content styling */
+.text-content {
+  margin-top: 20px;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* Introduction text needs flex properties */
+.introduction-container .text-content {
+  flex: 1;
+  min-width: 0; /* Allows text to shrink */
+}
+
+/* Responsive behavior for introduction */
+@media (max-width: 768px) {
+  .introduction-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .introduction-image {
+    align-self: center;
+  }
+}
+
+.institution-logo {
+  width: 80%;
+}
+
+/* Make publication images responsive */
+.content-table img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  align: center;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Override fixed widths in publications */
+.content-table img[width] {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* Make image column responsive */
+.content-table td:first-child {
+  width: 20% !important;
+  max-width: 200px;
+  min-width: 120px;
+}
+
+/* Ensure text column takes remaining space */
+.content-table td:last-child {
+  width: auto;
+}
+
+/* Experience section: two columns on wide screens */
+@media (min-width: 1200px) {
+  #section-experience .experience-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  #section-experience .experience-col table {
+    width: 100% !important;
+  }
+}
