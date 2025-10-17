@@ -62,6 +62,7 @@
 .sidebar-link:hover {
   background: var(--bg-secondary);
   text-decoration: none;
+  border-radius: 8px;
 }
 
 .sidebar-link.active {
