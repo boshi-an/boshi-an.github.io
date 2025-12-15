@@ -78,6 +78,23 @@ function selectSection(id) {
   if (history && history.replaceState) {
     history.replaceState(null, '', '#' + id);
   }
+  
+  // Hide header for portfolio page
+  updateHeaderVisibility(id);
+}
+
+// Update header for portfolio page
+function updateHeaderVisibility(sectionId) {
+  const nameElement = document.querySelector('.header .name');
+  const contactLinks = document.querySelector('.header .contact-links');
+  
+  if (sectionId === 'portfolio') {
+    nameElement.textContent = 'Portfolio';
+    contactLinks.classList.add('hidden');
+  } else {
+    nameElement.textContent = 'Boshi An';
+    contactLinks.classList.remove('hidden');
+  }
 }
 
 // Check if mobile device
@@ -102,12 +119,24 @@ async function init() {
   const initialSection = sections.find(s => s.id === hashFromUrl) || sections.find(s => s.id === 'section-introduction');
   currentSectionId = initialSection.id;
 
+  // Hide header for portfolio page on initial load
+  updateHeaderVisibility(currentSectionId);
+
   if (isMobile()) {
-    // Mobile: Load standard sections, plus hidden if explicitly requested
-    await loadAllSections([currentSectionId]);
-    document.querySelectorAll('.section').forEach(function(el) {
-      el.classList.add('active');
-    });
+    // Mobile: Portfolio page shows only portfolio, otherwise show all sections except portfolio
+    if (currentSectionId === 'portfolio') {
+      await loadSection('portfolio');
+      document.getElementById('portfolio').classList.add('active');
+    } else {
+      await loadAllSections([]);
+      document.querySelectorAll('.section').forEach(function(el) {
+        if (el.id === 'portfolio') {
+          el.classList.remove('active');
+        } else {
+          el.classList.add('active');
+        }
+      });
+    }
   } else {
     // Desktop: Load only the initial section
     await loadSection(currentSectionId);
@@ -132,11 +161,27 @@ async function handleResize() {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(async function() {
     if (isMobile()) {
-      // Mobile: Load non-hidden sections and the current one if hidden
-      await loadAllSections([currentSectionId]);
-      document.querySelectorAll('.section').forEach(function(el) {
-        el.classList.add('active');
-      });
+      // Mobile: Portfolio page shows only portfolio, otherwise show all sections
+      if (currentSectionId === 'portfolio') {
+        // Hide all other sections, show only portfolio
+        document.querySelectorAll('.section').forEach(function(el) {
+          el.classList.remove('active');
+        });
+        const portfolio = document.getElementById('portfolio');
+        if (!portfolio) {
+          await loadSection('portfolio');
+        }
+        document.getElementById('portfolio').classList.add('active');
+      } else {
+        await loadAllSections([]);
+        document.querySelectorAll('.section').forEach(function(el) {
+          if (el.id === 'portfolio') {
+            el.classList.remove('active');
+          } else {
+            el.classList.add('active');
+          }
+        });
+      }
     } else {
       // Desktop: Load only the current section and hide others
       // First, try to find the current section from URL hash

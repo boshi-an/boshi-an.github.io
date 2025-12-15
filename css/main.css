@@ -85,6 +85,11 @@ body {
   color: var(--accent-hover);
 }
 
+/* Hide contact links (for portfolio page) */
+.contact-links.hidden {
+  display: none;
+}
+
 /* Content sections - borderless style only */
 .section { 
   display: none; 
