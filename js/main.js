@@ -4,7 +4,9 @@ const sections = [
   { id: 'section-music', file: 'sections/music.html' },
   { id: 'section-publications', file: 'sections/publications.html' },
   { id: 'section-experience', file: 'sections/experience.html' },
-  { id: 'section-misc', file: 'sections/misc.html' }
+  { id: 'section-misc', file: 'sections/misc.html' },
+  // Hidden section only reachable via direct hash
+  { id: 'portfolio', file: 'sections/portfolio.html', hidden: true }
 ];
 
 // Load section content
@@ -84,8 +86,11 @@ function isMobile() {
 }
 
 // Load all sections for mobile
-async function loadAllSections() {
+async function loadAllSections(includeHiddenIds = []) {
   for (const section of sections) {
+    if (section.hidden && !includeHiddenIds.includes(section.id)) {
+      continue;
+    }
     await loadSection(section.id);
   }
 }
@@ -93,19 +98,20 @@ async function loadAllSections() {
 // Initialize
 async function init() {
   
+  const hashFromUrl = (location.hash || '#section-introduction').replace('#','');
+  const initialSection = sections.find(s => s.id === hashFromUrl) || sections.find(s => s.id === 'section-introduction');
+  currentSectionId = initialSection.id;
+
   if (isMobile()) {
-    // Mobile: Load all sections and show them all
-    await loadAllSections();
-    // Show all sections on mobile
+    // Mobile: Load standard sections, plus hidden if explicitly requested
+    await loadAllSections([currentSectionId]);
     document.querySelectorAll('.section').forEach(function(el) {
       el.classList.add('active');
     });
   } else {
     // Desktop: Load only the initial section
-    const hash = (location.hash || '#section-introduction').replace('#','');
-    currentSectionId = hash; // Set global tracking
-    await loadSection(hash);
-    selectSection(hash);
+    await loadSection(currentSectionId);
+    selectSection(currentSectionId);
     
     // Set up sidebar click handlers
     document.querySelectorAll('#sidebar .sidebar-link').forEach(function(el){
@@ -126,8 +132,8 @@ async function handleResize() {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(async function() {
     if (isMobile()) {
-      // Mobile: Load all sections and show them all
-      await loadAllSections();
+      // Mobile: Load non-hidden sections and the current one if hidden
+      await loadAllSections([currentSectionId]);
       document.querySelectorAll('.section').forEach(function(el) {
         el.classList.add('active');
       });
