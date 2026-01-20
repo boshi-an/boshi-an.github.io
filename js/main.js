@@ -4,6 +4,7 @@ const sections = [
   { id: 'section-music', file: 'sections/music.html' },
   { id: 'section-publications', file: 'sections/publications.html' },
   { id: 'section-experience', file: 'sections/experience.html' },
+  { id: 'section-blog', file: 'sections/blog.html' },
   { id: 'section-misc', file: 'sections/misc.html' },
   // Hidden section only reachable via direct hash
   { id: 'portfolio', file: 'sections/portfolio.html', hidden: true }
@@ -56,7 +57,7 @@ async function loadSection(sectionId) {
 }
 
 // Section navigation
-function selectSection(id) {
+function selectSection(id, preserveHash = false) {
   // Update global tracking
   currentSectionId = id;
   
@@ -74,9 +75,13 @@ function selectSection(id) {
   const link = document.querySelector('#sidebar .sidebar-link[data-target="' + id + '"]');
   if (link) link.classList.add('active');
   
-  // Update URL
-  if (history && history.replaceState) {
-    history.replaceState(null, '', '#' + id);
+  // Update URL (but preserve sub-paths for sections like blog)
+  if (history && history.replaceState && !preserveHash) {
+    // Don't overwrite if current hash is a sub-path of this section
+    const currentHash = location.hash.replace('#', '');
+    if (!currentHash.startsWith(id + '/')) {
+      history.replaceState(null, '', '#' + id);
+    }
   }
   
   // Hide header for portfolio page
@@ -115,7 +120,13 @@ async function loadAllSections(includeHiddenIds = []) {
 // Initialize
 async function init() {
   
-  const hashFromUrl = (location.hash || '#section-introduction').replace('#','');
+  let hashFromUrl = (location.hash || '#section-introduction').replace('#','');
+  
+  // Handle blog post URLs like "section-blog/en/post-id" - extract base section
+  if (hashFromUrl.startsWith('section-blog/')) {
+    hashFromUrl = 'section-blog';
+  }
+  
   const initialSection = sections.find(s => s.id === hashFromUrl) || sections.find(s => s.id === 'section-introduction');
   currentSectionId = initialSection.id;
 
@@ -185,7 +196,11 @@ async function handleResize() {
     } else {
       // Desktop: Load only the current section and hide others
       // First, try to find the current section from URL hash
-      const hash = location.hash.replace('#', '');
+      let hash = location.hash.replace('#', '');
+      // Handle blog post URLs like "section-blog/en/post-id"
+      if (hash.startsWith('section-blog/')) {
+        hash = 'section-blog';
+      }
       if (hash && sections.find(s => s.id === hash)) {
         currentSectionId = hash;
       }

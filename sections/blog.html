@@ -1,0 +1,279 @@
+<div id="section-blog" class="section">
+  <heading>Blog</heading>
+  
+  <!-- Language toggle -->
+  <div class="blog-lang-toggle">
+    <button id="lang-en" class="lang-btn active">English</button>
+    <button id="lang-zh" class="lang-btn">中文</button>
+  </div>
+
+  <!-- Blog list view -->
+  <div id="blog-list" class="blog-list">
+    <p class="blog-loading">Loading posts...</p>
+  </div>
+
+  <!-- Individual post view (hidden by default) -->
+  <div id="blog-post-view" class="blog-post-view" style="display: none;">
+    <a href="#" id="blog-back-link" class="blog-back-link">← Back to all posts</a>
+    <h2 id="blog-post-title" class="blog-post-title"></h2>
+    <div id="blog-post-date" class="blog-post-date"></div>
+    <div id="blog-post-content" class="blog-post-content"></div>
+  </div>
+
+  <script>
+    (function() {
+      const BLOG_BASE = 'sections/blog/';
+      let postsData = { en: [], zh: [] };
+      let currentLang = 'en';
+
+      // Format date for display
+      function formatDate(dateStr, lang) {
+        const date = new Date(dateStr + 'T00:00:00');
+        const locale = lang === 'zh' ? 'zh-CN' : 'en-US';
+        return date.toLocaleDateString(locale, { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      }
+
+      // Extract excerpt from HTML content
+      function getExcerpt(html, maxLength = 200) {
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        const text = div.textContent || div.innerText || '';
+        if (text.length <= maxLength) return text;
+        return text.substring(0, maxLength).trim() + '...';
+      }
+
+      // Update back link text based on language
+      function updateBackLink() {
+        const backLink = document.getElementById('blog-back-link');
+        backLink.textContent = currentLang === 'zh' ? '← 返回文章列表' : '← Back to all posts';
+      }
+
+      // Render blog list
+      function renderBlogList() {
+        const posts = postsData[currentLang] || [];
+        const listEl = document.getElementById('blog-list');
+        
+        if (!posts || posts.length === 0) {
+          listEl.innerHTML = currentLang === 'zh' 
+            ? '<p>暂无文章。</p>' 
+            : '<p>No posts yet.</p>';
+          return;
+        }
+
+        // Sort by date descending
+        const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const readMoreText = currentLang === 'zh' ? '阅读更多 →' : 'Read more →';
+
+        listEl.innerHTML = sortedPosts.map(post => `
+          <article class="blog-entry">
+            <div class="blog-meta">
+              <span class="blog-date">${formatDate(post.date, currentLang)}</span>
+            </div>
+            <h3 class="blog-title">
+              <a href="#" data-post-id="${post.id}">${post.title}</a>
+            </h3>
+            <p class="blog-excerpt">${post.excerpt || ''}</p>
+            <a href="#" class="blog-read-more" data-post-id="${post.id}">${readMoreText}</a>
+          </article>
+        `).join('');
+
+        // Add click handlers
+        listEl.querySelectorAll('[data-post-id]').forEach(el => {
+          el.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPost(this.getAttribute('data-post-id'));
+          });
+        });
+      }
+
+      // Show individual post
+      async function showPost(postId, addToHistory = true) {
+        const posts = postsData[currentLang] || [];
+        const post = posts.find(p => p.id === postId);
+        if (!post) return;
+
+        try {
+          const response = await fetch(BLOG_BASE + post.file);
+          if (!response.ok) throw new Error('Failed to load post');
+          const content = await response.text();
+
+          document.getElementById('blog-post-title').textContent = post.title;
+          document.getElementById('blog-post-date').textContent = formatDate(post.date, currentLang);
+          document.getElementById('blog-post-content').innerHTML = content;
+          updateBackLink();
+          
+          document.getElementById('blog-list').style.display = 'none';
+          document.querySelector('.blog-lang-toggle').style.display = 'none';
+          document.getElementById('blog-post-view').style.display = 'block';
+
+          // Update URL hash - use pushState to enable browser back button
+          if (history && addToHistory) {
+            history.pushState({ view: 'post', lang: currentLang, postId: postId }, '', '#section-blog/' + currentLang + '/' + postId);
+          }
+        } catch (error) {
+          console.error('Error loading post:', error);
+        }
+      }
+
+      // Show blog list
+      function showList(addToHistory = true) {
+        document.getElementById('blog-post-view').style.display = 'none';
+        document.querySelector('.blog-lang-toggle').style.display = 'flex';
+        document.getElementById('blog-list').style.display = 'block';
+        
+        if (history && addToHistory) {
+          history.pushState({ view: 'list', lang: currentLang }, '', '#section-blog/' + currentLang);
+        }
+      }
+
+      // Handle browser back/forward buttons
+      window.addEventListener('popstate', function(e) {
+        const hash = location.hash;
+        if (hash.startsWith('#section-blog/')) {
+          const parts = hash.replace('#section-blog/', '').split('/');
+          if (parts.length >= 1) {
+            const lang = parts[0];
+            if (lang === 'en' || lang === 'zh') {
+              // Update language if changed
+              if (currentLang !== lang) {
+                currentLang = lang;
+                document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+                document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+                renderBlogList();
+              }
+              
+              // Check if there's a post ID
+              if (parts.length === 2 && parts[1]) {
+                const postId = parts[1];
+                showPost(postId, false);
+                return;
+              }
+            }
+          }
+          // Show list view
+          showList(false);
+          return;
+        }
+        // Default: show blog list (for #section-blog without language)
+        if (hash === '#section-blog') {
+          showList(false);
+        }
+      });
+
+      // Switch language
+      function switchLanguage(lang, updateUrl = true) {
+        currentLang = lang;
+        
+        // Update button states
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+        document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+        
+        renderBlogList();
+        
+        // Update URL to remember language
+        if (updateUrl && history && history.replaceState) {
+          history.replaceState({ view: 'list', lang: currentLang }, '', '#section-blog/' + lang);
+        }
+      }
+
+      // Load excerpts for posts
+      async function loadExcerpts(posts) {
+        for (const post of posts) {
+          try {
+            const postResponse = await fetch(BLOG_BASE + post.file);
+            if (postResponse.ok) {
+              const content = await postResponse.text();
+              post.excerpt = getExcerpt(content);
+            }
+          } catch (e) {
+            post.excerpt = '';
+          }
+        }
+      }
+
+      // Load posts from JSON
+      async function loadPosts() {
+        try {
+          const response = await fetch(BLOG_BASE + 'posts.json');
+          if (!response.ok) throw new Error('Failed to load posts');
+          postsData = await response.json();
+
+          // Load excerpts for both languages
+          await Promise.all([
+            loadExcerpts(postsData.en || []),
+            loadExcerpts(postsData.zh || [])
+          ]);
+
+          // Parse URL hash FIRST to determine language and post
+          const hash = location.hash;
+          let targetPostId = null;
+          
+          if (hash.startsWith('#section-blog/')) {
+            const parts = hash.replace('#section-blog/', '').split('/');
+            if (parts.length >= 1) {
+              const lang = parts[0];
+              if (lang === 'en' || lang === 'zh') {
+                currentLang = lang;
+                document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+                document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+              }
+              if (parts.length === 2) {
+                targetPostId = parts[1];
+              }
+            }
+          }
+
+          // Now render the blog list with correct language
+          renderBlogList();
+
+          // If there's a specific post to show
+          if (targetPostId) {
+            const posts = postsData[currentLang] || [];
+            if (posts.find(p => p.id === targetPostId)) {
+              showPost(targetPostId, false);
+              // Replace the state with the post view
+              history.replaceState({ view: 'post', lang: currentLang, postId: targetPostId }, '', hash);
+            } else {
+              // Post not found, set list state
+              history.replaceState({ view: 'list', lang: currentLang }, '', '#section-blog/' + currentLang);
+            }
+          } else {
+            // Set initial history state for list view
+            history.replaceState({ view: 'list', lang: currentLang }, '', '#section-blog/' + currentLang);
+          }
+        } catch (error) {
+          console.error('Error loading posts:', error);
+          document.getElementById('blog-list').innerHTML = 
+            '<p>Unable to load blog posts.</p>';
+        }
+      }
+
+      // Event listeners
+      document.getElementById('blog-back-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Use browser back if possible, otherwise show list
+        if (history.length > 1) {
+          history.back();
+        } else {
+          showList();
+        }
+      });
+
+      document.getElementById('lang-en').addEventListener('click', function() {
+        switchLanguage('en');
+      });
+
+      document.getElementById('lang-zh').addEventListener('click', function() {
+        switchLanguage('zh');
+      });
+
+      // Initialize
+      loadPosts();
+    })();
+  </script>
+</div>
