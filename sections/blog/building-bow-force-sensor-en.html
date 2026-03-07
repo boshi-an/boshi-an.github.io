@@ -1,0 +1,255 @@
+<div class="blog-post">
+  <h2>Overview</h2>
+  <p>
+    The main purpose of this project is to develop a device that is able to sense the force applied by the bow on the string.
+  </p>
+  <p>
+    The installation of sensors (strain gauge) is quite tricky and challenging. We have provided a series of instructions for proper installation.
+  </p>
+  <p>
+    We have tested two options to do this job.
+  </p>
+
+  <h2>Option 1: Raspberry Pi + ADC Module</h2>
+  <p>
+    Using a two-gauge half Wheatstone bridge (or 4-gauge full bridge) + Waveshare AD/DA board + Raspberry Pi.
+  </p>
+  
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/209F1142-68BF-4E66-9E9C-681455991B9E_1_102_o.jpeg" alt="Option 1 Setup">
+  </figure>
+
+  <p><strong>Pros:</strong> Precision and frequency can be very high.</p>
+  <p><strong>Cons:</strong> The ADC module is not stable and breaks easily.</p>
+
+  <p>
+    <a href="sections/blog/contents/bow-pressure-measurement/Gerber_PCB1_2026-03-07.zip" download>Download PCB Gerber File</a>
+  </p>
+
+  <h3>Bill of Materials</h3>
+  <table class="blog-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Waveshare ADS1263 Board</td>
+        <td>10 CNY</td>
+        <td><a href="https://www.waveshare.net/shop/High-Precision-AD-HAT.htm">Waveshare</a></td>
+      </tr>
+      <tr>
+        <td>Strain Gauge 120-10AA (with 3m wire)</td>
+        <td>12.6 CNY × 4</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=821733240885">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>120 Ohm Resistor</td>
+        <td>2 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=692848600520">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>Wire</td>
+        <td>20 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=840041041528">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>Raspberry Pi 4B</td>
+        <td>1000 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=606230506951">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>Carbon Fiber Bow</td>
+        <td>300 CNY</td>
+        <td><a href="https://map.baidu.com/poi/%E9%87%91%E7%80%9A%E6%96%AF%E4%B9%90%E5%99%A8%E8%A1%8C/@12955419.785,4829964.08,19z">Local Store</a></td>
+      </tr>
+      <tr>
+        <td>Wheatstone Bridge PCB</td>
+        <td>~20 CNY</td>
+        <td>Order at JLC PCB</td>
+      </tr>
+      <tr>
+        <td>Heat Shrink Tubing</td>
+        <td>~20 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=660362823660">Tmall</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Option 2: Off-the-shelf Decoder</h2>
+  <p>
+    Also using a two-gauge half-bridge, but with an out-of-the-box product to do the ADC.
+  </p>
+
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/Screenshot_2026-03-07_at_20.43.34.png" alt="Option 2 Setup">
+  </figure>
+
+  <p>
+    The signal can then be read by the computer from COM serial ports. The limitation here is that the stable reading frequency is only 40 Hz.
+  </p>
+
+  <h3>Bill of Materials</h3>
+  <table class="blog-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>RunesKee decoder 5-in-1 with screen (120 Ohm)</td>
+        <td>170 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=822362916657">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>Strain Gauge 120-10AA (with 3m wire)</td>
+        <td>12.6 CNY × 4</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=821733240885">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>120 Ohm Resistor</td>
+        <td>2 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=692848600520">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>Wire</td>
+        <td>20 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=840041041528">Tmall</a></td>
+      </tr>
+      <tr>
+        <td>Carbon Fiber Bow</td>
+        <td>300 CNY</td>
+        <td><a href="https://map.baidu.com/poi/%E9%87%91%E7%80%9A%E6%96%AF%E4%B9%90%E5%99%A8%E8%A1%8C/@12955419.785,4829964.08,19z">Local Store</a></td>
+      </tr>
+      <tr>
+        <td>Wheatstone Bridge PCB</td>
+        <td>~20 CNY</td>
+        <td>Order at JLC PCB</td>
+      </tr>
+      <tr>
+        <td>Heat Shrink Tubing</td>
+        <td>~20 CNY</td>
+        <td><a href="https://detail.tmall.com/item.htm?id=660362823660">Tmall</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Instructions on Sensor Installation</h2>
+  <p>
+    Strain gauges are quite sensitive elements in this project. They are hard to tame.
+  </p>
+
+  <h3>1. Choosing the Correct Glue</h3>
+  <p>
+    I am using Loctite 406 glue as the adhesive. Wrong glue may cause:
+  </p>
+  <ul>
+    <li>Dissolving the strain gauge base and destroying the sensor</li>
+    <li>Failure to bond with carbon fiber</li>
+    <li>Drastic adhesive creep (not noticeable at first, but readings will drift constantly when strain is applied)</li>
+  </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/4A3D86AA-4C2F-4555-B007-DF1454409CAD.heic" alt="Glue selection">
+  </figure>
+
+  <h3>2. Prepare the Cleaner</h3>
+  <p>
+    I used acetone (CH₃)₂CO as the cleaner. This step is crucial for removing dust and oil on the bonding surface.
+  </p>
+
+  <h3>3. Hold the Bow in Place</h3>
+  <ul>
+    <li>Remove the bow hair for convenience.</li>
+    <li>Use clamps to hold the bow tightly.</li>
+  </ul>
+
+  <h3>4. Polishing the Installation Surface</h3>
+  <ul>
+    <li>The strain gauge should be installed on a surface with small curvature. A violin bow is not ideal, thus we need to prepare the surface for installation.</li>
+    <li>Use files to polish the bow until you get a flat platform for the strain gauge.</li>
+    <li>Clean the surface and the gauge with acetone.</li>
+  </ul>
+
+  <h3>5. Preparing for Installation</h3>
+  <ul>
+    <li>Tape the gauge wire to the bow body, making the gauge have loose contact with the installation surface.</li>
+    <li>Prepare a wire that will later help press the gauge.</li>
+  </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/94f74a88-2184-4d83-b482-31161e1405b1.png" alt="Installation preparation">
+  </figure>
+
+  <h3>6. Installation</h3>
+  <ul>
+    <li>Use the wire to hold the gauge in place, using 3 turns.</li>
+    <li>Apply one drop of glue at the side of the gauge; surface tension will help the glue fill the space. (Don't put too much glue—this increases risk when removing the wire and increases adhesive creep.)</li>
+    <li>Apply tension on the wire to press the gauge against the installation surface.</li>
+    <li>Adjust the wire and tension so that all space between the gauge and surface is filled with glue.</li>
+    <li>When the glue is fully dried, remove the strings carefully. Sometimes this procedure will tear the gauges. (If that happens, use the file to remove the gauge and repeat the cleaning-installation process.)</li>
+  </ul>
+
+  <h3>7. Installation Configuration</h3>
+  <ul>
+    <li>Apply the previous procedure 2 or 4 times to create a half or full bridge.</li>
+    <li>For a half bridge, the 2 gauges should be placed at the top and bottom of the bow body.</li>
+    <li>For a full bridge, replicate this configuration next to the first pair of gauges.</li>
+  </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/1599b46c-2027-4bf5-ac68-1947e6663ac7.png" alt="Bridge configuration">
+  </figure>
+
+  <h3>8. Testing</h3>
+  <p>
+    All installed gauges should have resistance 119–121 Ω. If the resistance is out of this range, remove the gauge and do it again. This ensures the voltage difference is within the range of the ADC module.
+  </p>
+
+  <h3>9. Protection</h3>
+  <ul>
+    <li>Strain gauges are extremely fragile; external perturbations will interfere with readings and can even damage the gauge permanently.</li>
+    <li>Use heat shrinks to protect the gauge and wirings. Use a hot-air gun at 220–240°C. Heat can also damage the gauge, so don't heat a single spot for more than 2 seconds.</li>
+  </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/80484dae-5a9d-4d9f-af33-229f5c9aee08.png" alt="Protected gauge">
+  </figure>
+
+  <h3>10. Building the Bridge</h3>
+  <ul>
+    <li>Use the PCB board for the Wheatstone Bridge.</li>
+    <li>For Option 1, connect E+ to AVDD, E- to AVSS, and S+/S- to a differential pair. See the <a href="https://www.waveshare.net/wiki/High-Precision_AD_HAT">Waveshare documentation</a>.</li>
+    <li>For Option 2, connect the ports with the same names.</li>
+    <li>The bridge can be placed at the bow frog or away from the bow.</li>
+  </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/image.png" alt="Bridge wiring">
+  </figure>
+
+  <h3>11. Data Collection</h3>
+  <ul>
+    <li>With some coding, we can easily write code to read the data.</li>
+    <li>For Option 1, recording can be done at 120 Hz.</li>
+    <li>For Option 2, recording is limited to 40 Hz.</li>
+  </ul>
+
+  <h3>12. Verification</h3>
+  <ul>
+    <li>The readings should be sensitive to changes in bow pressure.</li>
+    <li>When the bow is at rest, drift should be slow or linear. With full bridge configuration, drift is not expected.</li>
+    <li>The readings should return to the initial value after using the bow.</li>
+  </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/727D3FA8-ECD4-4654-9D87-FE8B8880DE14_1_201_a.heic" alt="Verification readings">
+  </figure>
+
+  <h3>13. Calibration</h3>
+  <ul>
+    <li>The bow pressure and reading relationship is not linear. The relationship is even dependent on the bowing point.</li>
+    <li>A look-up table can be created by using a spring balance at different points on the bow hair, applying different forces.</li>
+    <li>When the bow is properly tightened, the force-reading relationship is expected to be independent of bow hair tension.</li>
+  </ul>
+</div>
