@@ -20,7 +20,7 @@
   </figure>
 
   <p><strong>Pros:</strong> Precision and frequency can be very high.</p>
-  <p><strong>Cons:</strong> The ADC module is not stable and breaks easily.</p>
+  <p><strong>Cons:</strong> May not be very stable since the device is not built for strain gauges.</p>
 
   <p>
     <a href="sections/blog/contents/bow-pressure-measurement/Gerber_PCB1_2026-03-07.zip" download>Download PCB Gerber File</a>
@@ -37,9 +37,9 @@
     </thead>
     <tbody>
       <tr>
-        <td>Waveshare ADS1263 Board</td>
+        <td>Waveshare High-Precision AD Hat</td>
         <td>10 CNY</td>
-        <td><a href="https://www.waveshare.net/shop/High-Precision-AD-HAT.htm">Waveshare</a></td>
+        <td><a href="https://www.waveshare.net/wiki/High-Precision_AD_HAT">Waveshare</a></td>
       </tr>
       <tr>
         <td>Strain Gauge 120-10AA (with 3m wire)</td>
@@ -154,8 +154,11 @@
     <li>Failure to bond with carbon fiber</li>
     <li>Drastic adhesive creep (not noticeable at first, but readings will drift constantly when strain is applied)</li>
   </ul>
+  <p>
+    The most recommended glue is CA-80, which is designed for carbon fibers and strain gauges.
+  </p>
   <figure class="blog-figure">
-    <img src="sections/blog/contents/bow-pressure-measurement/4A3D86AA-4C2F-4555-B007-DF1454409CAD.heic" alt="Glue selection">
+    <img src="sections/blog/contents/bow-pressure-measurement/glue.jpg" alt="Glue selection">
   </figure>
 
   <h3>2. Prepare the Cleaner</h3>
@@ -243,7 +246,7 @@
     <li>The readings should return to the initial value after using the bow.</li>
   </ul>
   <figure class="blog-figure">
-    <img src="sections/blog/contents/bow-pressure-measurement/727D3FA8-ECD4-4654-9D87-FE8B8880DE14_1_201_a.heic" alt="Verification readings">
+    <img src="sections/blog/contents/bow-pressure-measurement/readings.jpg" alt="Verification readings">
   </figure>
 
   <h3>13. Calibration</h3>
@@ -251,5 +254,23 @@
     <li>The bow pressure and reading relationship is not linear. The relationship is even dependent on the bowing point.</li>
     <li>A look-up table can be created by using a spring balance at different points on the bow hair, applying different forces.</li>
     <li>When the bow is properly tightened, the force-reading relationship is expected to be independent of bow hair tension.</li>
+    <li>
+      The photo below shows the calibration setup. A force sensor is connected to the laptop to get ground truth contact force.
+      The force sensor is manually placed at different positions on the bow to collect data points.
+      The recorded force-position-reading data triples are then used for analysis.
+    </li>
   </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/calibration-scene.png" alt="Calibration result">
+  </figure>
+
+  <h3>13. Calibration Result</h3>
+  <ul>
+    <li>
+      Analysis shows the datapoints can be fitted with plane z=axy+cx+dy+e, where x, y are contact position and real contact force.
+    </li>
+  </ul>
+  <figure class="blog-figure">
+    <img src="sections/blog/contents/bow-pressure-measurement/calibrate.png" alt="Calibration result">
+  </figure>
 </div>

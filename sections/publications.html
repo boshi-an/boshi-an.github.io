@@ -3,13 +3,64 @@
   <table class="content-table">
     <tbody>
 
+      <tr onmouseout="malle_stop12()" onmouseover="malle_start12()">
+        <td style="padding:20px;width:25%;vertical-align:middle">
+          <div class="one">
+            <div class="two" id='malle_image12'>
+              <img src='./images/fast_readout/grasp.png' width="190">
+            </div>
+            <img src='./images/fast_readout/grasp2.png' width="190">
+          </div>
+          <script type="text/javascript">
+            function malle_start12() {
+              document.getElementById('malle_image12').style.opacity = "1";
+            }
+            function malle_stop12() {
+              document.getElementById('malle_image12').style.opacity = "0";
+            }
+            malle_stop12()
+          </script>
+        </td>
+
+        <td style="padding:20px;width:75%;vertical-align:middle">
+          <a href="https://boshi-an.github.io/RobotViolinist/">
+            <papertitle>RobotViolinist: Challenging Human Dexterity in Simulated Violin Playing with Dexterous Hands</papertitle>
+          </a>
+          <br>
+
+          <span class="author-focus"><u>Boshi An</u></span>,
+          <a href="https://srl.ethz.ch/the-group/people/chenyu-yang.html" class="author-focus">Chenyu Yang</a>
+          <a href="https://robert.katzschmann.de" class="author-focus">Robert Katzschmann</a>
+          
+          <br>
+          <a href="https://boshi-an.github.io/RobotViolinist/">Project Page</a>
+          /
+          <a href="https://github.com/boshi-an/RobotViolinist">Code (Coming Soon)</a>
+          <br>
+          <em>Ongoing</em>
+
+          <p></p>
+
+          <p>
+            Violin playing is a challenging task even for human dexterity, requiring thousands hours of practice.
+            Both hands must be controlled with sub-millimeter positional accuracy and millinewton contact accuracy.
+
+            We designed a framework for simulating violin playing with dexterous hands,
+            featuring accurate contact physics,
+            realistic acoustics from motion and a dataset for accurate retargeted human violin playing motion.
+
+            We also designed hierarchical long-horizon learning algorithms to solve the violin playing task.
+          </p>
+        </td>
+      </tr>
+
       <tr onmouseout="malle_stop10()" onmouseover="malle_start10()">
         <td style="padding:20px;width:25%;vertical-align:middle">
           <div class="one">
             <div class="two" id='malle_image10'>
-              <img src='./images/roboviolinist/teaser.png' width="190">
+              <img src='./images/roboviolinist/real-play.png' width="190">
             </div>
-            <img src='./images/roboviolinist/architecture_diagram.png' width="190">
+            <img src='./images/roboviolinist/setup.jpeg' width="190">
           </div>
           <script type="text/javascript">
             function malle_start10() {
