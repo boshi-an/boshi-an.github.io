@@ -24,32 +24,35 @@
 
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://boshi-an.github.io/RobotViolinist/">
-            <papertitle>RobotViolinist: Challenging Human Dexterity in Simulated Violin Playing with Dexterous Hands</papertitle>
+            <papertitle>High-Speed, Scalable Sensor Readout for Dexterous Robotic Hands via
+Shift-Register Multiplexing</papertitle>
           </a>
           <br>
 
+          Jaehoon Kim,
           <span class="author-focus"><u>Boshi An</u></span>,
-          <a href="https://srl.ethz.ch/the-group/people/chenyu-yang.html" class="author-focus">Chenyu Yang</a>
+          Lazaros Christoforidis,
+          Michail Papadakis,
+          Victor Kartsch,
           <a href="https://robert.katzschmann.de" class="author-focus">Robert Katzschmann</a>
-          
+
           <br>
-          <a href="https://boshi-an.github.io/RobotViolinist/">Project Page</a>
+          <a href="https://arxiv.org/pdf/2605.01434">ArXiv</a>
           /
-          <a href="https://github.com/boshi-an/RobotViolinist">Code (Coming Soon)</a>
+          <a href="https://github.com/jjaaeehhoooonn/sensor_readout">Code (Coming Soon)</a>
           <br>
-          <em>Ongoing</em>
+          <em>Accepted by RA-L, presenting at ICRA 2027</em>
 
           <p></p>
 
           <p>
-            Violin playing is a challenging task even for human dexterity, requiring thousands hours of practice.
-            Both hands must be controlled with sub-millimeter positional accuracy and millinewton contact accuracy.
+            We developed a scalable SIPO shift-register sensor-readout architecture for dexterous robotic hands.
 
-            We designed a framework for simulating violin playing with dexterous hands,
-            featuring accurate contact physics,
-            realistic acoustics from motion and a dataset for accurate retargeted human violin playing motion.
-
-            We also designed hierarchical long-horizon learning algorithms to solve the violin playing task.
+            The system is capable of acquiring 20 joint/tactile sensor channels at 1 kHz
+            with stable operation up to 1.5 kHz using only 3 signal lines between modules.
+            
+            Experiments validated sub-degree joint sensing with less than 0.446 degrees slope error and
+            less than 0.37 degrees RMSE. We also built LSTM-based tactile inference for contact force and localization, achieving 0.125 N force RMSE.
           </p>
         </td>
       </tr>
